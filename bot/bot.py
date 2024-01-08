@@ -48,7 +48,7 @@ HELP_MESSAGE = """Commands:
 ⚪ /help – Show help
 
 🎨 Generate images from text prompts in <b>👩‍🎨 Artist</b> /mode
-👥 Add bot to <b>group chat</b>: /help_group_chat
+👥 Further help: /help_group_chat
 🎤 You can send <b>Voice Messages</b> instead of text
 """
 
@@ -157,7 +157,6 @@ async def help_group_chat_handle(update: Update, context: CallbackContext):
      text = HELP_GROUP_CHAT_MESSAGE.format(bot_username="@" + context.bot.username)
 
      await update.message.reply_text(text, parse_mode=ParseMode.HTML)
-     await update.message.reply_video(config.help_group_chat_video_path)
 
 
 async def retry_handle(update: Update, context: CallbackContext):
