@@ -46,23 +46,20 @@ HELP_MESSAGE = """Commands:
 ⚪ /settings – Show settings
 ⚪ /balance – Show balance
 ⚪ /help – Show help
-⚪ /arti – Ask me anything
 ⚪ /image – Generate image
 
-🎨 Generate images from text prompts in <b>👩‍🎨 Artist</b> /mode
-👥 Further help: /help_group_chat
+🎨 Generate images from text prompts with <b>/image</b> command!
 🎤 You can send <b>Voice Messages</b> instead of text
 """
 
-HELP_GROUP_CHAT_MESSAGE = """You can add bot to any <b>group chat</b> to help and entertain its participants!
+HELP_GROUP_CHAT_MESSAGE = """Please select the mode in which you want to best utilize Arti!
 
-Instructions (see <b>video</b> below):
-1. Add the bot to the group chat
-2. Make it an <b>admin</b>, so that it can see messages (all other rights can be restricted)
-3. You're awesome!
+Instructions (see <b>instructions</b> below):
+1. To get a reply from the bot in the chat – @ <b>tag</b> it or <b>reply</b> to its message.
+2. Arti thinks you are awesome!
 
 To get a reply from the bot in the chat – @ <b>tag</b> it or <b>reply</b> to its message.
-For example: "{bot_username} write a poem about Telegram"
+For example: "{bot_username} write a poem about Doge"
 """
 
 
@@ -641,7 +638,6 @@ async def post_init(application: Application):
         BotCommand("/balance", "Show balance"),
         BotCommand("/settings", "Show settings"),
         BotCommand("/help", "Show help message"),
-        BotCommand("/arti", "Arti"),
         BotCommand("/image", "Generate Image"),
     ])
 
@@ -685,7 +681,6 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
-    application.add_handler(CommandHandler("arti", message_handle))
     application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
 
 
