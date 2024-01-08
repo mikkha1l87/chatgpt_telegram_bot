@@ -202,10 +202,6 @@ async def message_handle(update: Update, context: CallbackContext, message=None,
     user_id = update.message.from_user.id
     chat_mode = db.get_user_attribute(user_id, "current_chat_mode")
 
-    if chat_mode == "artist":
-        await generate_image_handle(update, context, message=message)
-        return
-
     async def message_handle_fn():
         # new dialog timeout
         if use_new_dialog_timeout:
@@ -691,7 +687,7 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
-    application.add_handler(CommandHandler("arti", message_handle_fn, filters=user_filter))
+    application.add_handler(CommandHandler("arti", message_handle, filters=user_filter))
     application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
     application.add_handler(CommandHandler("voice", voice_message_handle, filters=user_filter))
     voice_message_handle
