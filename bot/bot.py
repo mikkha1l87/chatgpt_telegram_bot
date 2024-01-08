@@ -48,7 +48,6 @@ HELP_MESSAGE = """Commands:
 ⚪ /help – Show help
 ⚪ /arti – Ask me anything
 ⚪ /image – Generate image
-⚪ /voice – New voice dialog
 
 🎨 Generate images from text prompts in <b>👩‍🎨 Artist</b> /mode
 👥 Further help: /help_group_chat
@@ -644,7 +643,6 @@ async def post_init(application: Application):
         BotCommand("/help", "Show help message"),
         BotCommand("/arti", "Arti"),
         BotCommand("/image", "Generate Image"),
-        BotCommand("/voice", "Voice"),
     ])
 
 def run_bot() -> None:
@@ -687,10 +685,9 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
-    application.add_handler(CommandHandler("arti", message_handle, filters=user_filter))
+    application.add_handler(CommandHandler("arti", filters.TEXT & ~filters.COMMAND & user_filter, message_handle))
     application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
-    application.add_handler(CommandHandler("voice", voice_message_handle, filters=user_filter))
-    voice_message_handle
+
 
     application.add_error_handler(error_handle)
 
