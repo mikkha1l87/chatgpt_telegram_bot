@@ -643,6 +643,7 @@ async def post_init(application: Application):
         BotCommand("/balance", "Show balance"),
         BotCommand("/settings", "Show settings"),
         BotCommand("/help", "Show help message"),
+        BotCommand("/image", "Generate Image"),
     ])
 
 def run_bot() -> None:
@@ -685,6 +686,7 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
+    application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
 
     application.add_error_handler(error_handle)
 
