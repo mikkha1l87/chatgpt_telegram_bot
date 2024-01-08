@@ -685,7 +685,7 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
-    application.add_handler(CommandHandler("arti", filters.TEXT & ~filters.COMMAND & user_filter, message_handle))
+    application.add_handler(CommandHandler("arti", message_handle))
     application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
 
 
