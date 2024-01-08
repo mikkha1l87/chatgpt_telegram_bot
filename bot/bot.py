@@ -46,7 +46,9 @@ HELP_MESSAGE = """Commands:
 ⚪ /settings – Show settings
 ⚪ /balance – Show balance
 ⚪ /help – Show help
-⚪ /image – Generate Image
+⚪ /arti – Ask me anything
+⚪ /image – Generate image
+⚪ /voice – New voice dialog
 
 🎨 Generate images from text prompts in <b>👩‍🎨 Artist</b> /mode
 👥 Further help: /help_group_chat
@@ -136,7 +138,7 @@ async def start_handle(update: Update, context: CallbackContext):
     db.set_user_attribute(user_id, "last_interaction", datetime.now())
     db.start_new_dialog(user_id)
 
-    reply_text = "Hi! I'm <b>ChatGPT</b> bot implemented with OpenAI API 🤖\n\n"
+    reply_text = "Hi! I'm <b>ARTI</b> the Artificial Inu bot aiming to prevent the best customer service and image generation in the memespace! 🤖\n\n"
     reply_text += HELP_MESSAGE
 
     await update.message.reply_text(reply_text, parse_mode=ParseMode.HTML)
@@ -644,7 +646,9 @@ async def post_init(application: Application):
         BotCommand("/balance", "Show balance"),
         BotCommand("/settings", "Show settings"),
         BotCommand("/help", "Show help message"),
+        BotCommand("/arti", "Arti"),
         BotCommand("/image", "Generate Image"),
+        BotCommand("/voice", "Voice"),
     ])
 
 def run_bot() -> None:
@@ -687,7 +691,10 @@ def run_bot() -> None:
     application.add_handler(CallbackQueryHandler(set_settings_handle, pattern="^set_settings"))
 
     application.add_handler(CommandHandler("balance", show_balance_handle, filters=user_filter))
+    application.add_handler(CommandHandler("arti", message_handle, filters=user_filter))
     application.add_handler(CommandHandler("image", generate_image_handle, filters=user_filter))
+    application.add_handler(CommandHandler("voice", voice_message_handle, filters=user_filter))
+    voice_message_handle
 
     application.add_error_handler(error_handle)
 
