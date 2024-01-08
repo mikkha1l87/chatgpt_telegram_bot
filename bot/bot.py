@@ -46,6 +46,7 @@ HELP_MESSAGE = """Commands:
 ⚪ /settings – Show settings
 ⚪ /balance – Show balance
 ⚪ /help – Show help
+⚪ /image – Generate Image
 
 🎨 Generate images from text prompts in <b>👩‍🎨 Artist</b> /mode
 👥 Further help: /help_group_chat
